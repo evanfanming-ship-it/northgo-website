@@ -1,0 +1,134 @@
+[
+  {
+    "path": "/zh-tw/services/freight-logistics",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/services/project-logistics",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/services/warehouse-logistics",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/services/shipping-agency",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/about",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/contact",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/news",
+    "status": 404
+  },
+  {
+    "path": "/zh-tw/legal/privacy-policy",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/legal/terms",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/legal/cookie-policy",
+    "status": 200
+  },
+  {
+    "path": "/zh-tw/legal/disclaimer",
+    "status": 200
+  },
+  {
+    "path": "/ja/services/freight-logistics",
+    "status": 200
+  },
+  {
+    "path": "/ja/services/project-logistics",
+    "status": 200
+  },
+  {
+    "path": "/ja/services/warehouse-logistics",
+    "status": 200
+  },
+  {
+    "path": "/ja/services/shipping-agency",
+    "status": 200
+  },
+  {
+    "path": "/ja/about",
+    "status": 200
+  },
+  {
+    "path": "/ja/contact",
+    "status": 200
+  },
+  {
+    "path": "/ja/news",
+    "status": 404
+  },
+  {
+    "path": "/ja/legal/privacy-policy",
+    "status": 200
+  },
+  {
+    "path": "/ja/legal/terms",
+    "status": 200
+  },
+  {
+    "path": "/ja/legal/cookie-policy",
+    "status": 200
+  },
+  {
+    "path": "/ja/legal/disclaimer",
+    "status": 200
+  },
+  {
+    "path": "/vi/services/freight-logistics",
+    "status": 200
+  },
+  {
+    "path": "/vi/services/project-logistics",
+    "status": 200
+  },
+  {
+    "path": "/vi/services/warehouse-logistics",
+    "status": 200
+  },
+  {
+    "path": "/vi/services/shipping-agency",
+    "status": 200
+  },
+  {
+    "path": "/vi/about",
+    "status": 200
+  },
+  {
+    "path": "/vi/contact",
+    "status": 200
+  },
+  {
+    "path": "/vi/news",
+    "status": 404
+  },
+  {
+    "path": "/vi/legal/privacy-policy",
+    "status": 200
+  },
+  {
+    "path": "/vi/legal/terms",
+    "status": 200
+  },
+  {
+    "path": "/vi/legal/cookie-policy",
+    "status": 200
+  },
+  {
+    "path": "/vi/legal/disclaimer",
+    "status": 200
+  }
+]

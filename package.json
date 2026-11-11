@@ -1,0 +1,10 @@
+{
+  "name": "northgo-website-proposal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs && node build-offices.mjs && node build-offices-dark.mjs && node build-redesign.mjs && node build-pages.mjs",
+    "test": "node verify.mjs && node verify-offices.mjs && node verify-pages.mjs"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "offices": 7,
+  "regionCounts": {
+    "world": 7,
+    "asia": 6,
+    "taiwan": 3,
+    "japan": 2,
+    "north-america": 1,
+    "southeast-asia": 1
+  },
+  "labelLayoutsChecked": 12,
+  "browserChecks": [
+    "All 6 region filters: marker and list counts match",
+    "All 7 office cards: emails and address-based map links",
+    "390px mobile viewport: no horizontal overflow and all 7 labels visible",
+    "Keyboard selection using Enter",
+    "Zoom in and reset",
+    "Desktop global overview: all 7 markers visible",
+    "No browser console errors"
+  ],
+  "screenshot": "offices-map-preview.png",
+  "markerPrecision": "Illustrative city locations; Google Maps links search the official address."
+}

@@ -1,0 +1,30 @@
+{
+  "files": [
+    {
+      "file": "index.html",
+      "languages": 4,
+      "checks": [
+        "localized page content and URL consistency",
+        "URL initial language and invalid fallback",
+        "language selector, document language and title",
+        "cross-view language preservation",
+        "expand / collapse and print restoration",
+        "localized search, category filters, no results and reset"
+      ]
+    },
+    {
+      "file": "sitemap-tree.html",
+      "languages": 4,
+      "checks": [
+        "localized page content and URL consistency",
+        "URL initial language and invalid fallback",
+        "language selector, document language and title",
+        "cross-view language preservation",
+        "expand / collapse and print restoration"
+      ]
+    }
+  ],
+  "pageUrlsChecked": 48,
+  "anchorsChecked": 32,
+  "visualVerification": "Unavailable: browser policy blocks local file inspection."
+}
