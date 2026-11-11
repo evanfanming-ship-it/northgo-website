@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+- Replace the text logo with the official Northgo website vector artwork.
+- Use the official teal/blue logo on light backgrounds and teal/white logo in the footer.
+- Embed logo assets for standalone HTML and static Pages deployment.
+
 ## 1.0.0
 
 First versioned release of the Northgo website proposal.

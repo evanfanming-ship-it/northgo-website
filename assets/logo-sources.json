@@ -1,0 +1,14 @@
+[
+  {
+    "file": "northgo-logo-dark.svg",
+    "source": "https://cdn.prod.website-files.com/66fc7398f8b5d731b52bcefb/6711b9c49196f9787772bf48_NG-Logo_Teal-Blue.lottie",
+    "origin": "https://www.northgo.com/",
+    "description": "Static SVG frame from the official website logo renderer"
+  },
+  {
+    "file": "northgo-logo-light.svg",
+    "source": "https://cdn.prod.website-files.com/66fc7398f8b5d731b52bcefb/6711b624d6ce0b4be56622ef_Full%20logo%20Teal%20White.lottie",
+    "origin": "https://www.northgo.com/",
+    "description": "Static SVG frame from the official website logo renderer"
+  }
+]

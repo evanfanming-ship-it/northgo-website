@@ -12,6 +12,12 @@ for(const f of ['index.html','northgo-updated.html','sitemap.html','sitemap-tree
 }
 const home=readFileSync('dist/index.html','utf8');
 assert.ok(home.includes('id="enquiry-form"'));
+for(const theme of ['dark','light']){
+ const svg=readFileSync('assets/northgo-logo-'+theme+'.svg','utf8');
+ assert.ok(svg.includes('viewBox="0 0 1070 210"'));
+ assert.ok(!/<script\b|<foreignObject\b|https?:\/\//i.test(svg.replace(/xmlns(?::xlink)?="[^"]*"/g,'')));
+ assert.ok(home.includes('data:image/svg+xml;base64,'+Buffer.from(svg).toString('base64')),'Missing official logo '+theme);
+}
 assert.ok(home.includes('href="sitemap.html?lang='));
 assert.ok(!home.includes('href="index.html?lang='));
 assert.ok(existsSync('dist/.nojekyll'));
