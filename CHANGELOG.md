@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+
+- Bump the release version and redeploy the current website.
+- No application behavior or content changes.
+
 ## 1.0.2
 
 - Refine the English hero with a clearer logistics headline and balanced responsive layout.
