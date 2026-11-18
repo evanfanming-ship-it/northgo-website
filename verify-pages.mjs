@@ -12,6 +12,8 @@ for(const f of ['index.html','northgo-updated.html','sitemap.html','sitemap-tree
 }
 const home=readFileSync('dist/index.html','utf8');
 assert.ok(home.includes('id="enquiry-form"'));
+assert.ok(home.includes(`class="site-version">v${version}</span>`),'Visible homepage version is stale');
+assert.ok(home.includes(`"releaseVersion":"${version}"`),'Runtime version is stale');
 for(const theme of ['dark','light']){
  const svg=readFileSync('assets/northgo-logo-'+theme+'.svg','utf8');
  assert.ok(svg.includes('viewBox="0 0 1070 210"'));

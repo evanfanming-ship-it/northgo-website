@@ -5,6 +5,7 @@ import {offices} from './offices-data.mjs';
 import {escapeHtml,renderPage} from './redesign-render.mjs';
 const map=JSON.parse(readFileSync('offices-map-dark.html','utf8').match(/const mapData=(.*?);\n/)[1]);
 globalThis.siteData={copy,offices,catalog:{},serviceUrls:{},aboutUrls:{},privacyUrls:{},baseUrls:{},land:map.polygons.map(d=>`<path d="${d}"/>`).join('')};
+siteData.releaseVersion=JSON.parse(readFileSync('package.json','utf8')).version;
 siteData.logos=Object.fromEntries(['dark','light'].map(theme=>[theme,'data:image/svg+xml;base64,'+Buffer.from(readFileSync('assets/northgo-logo-'+theme+'.svg')).toString('base64')]));
 siteData.heroPhoto='data:image/webp;base64,'+readFileSync('assets/northgo-cargo-aircraft.webp').toString('base64');
 for(const [l,v] of Object.entries(locales)){siteData.catalog[l]=v.pages.slice(4,8);siteData.serviceUrls[l]=paths.slice(4,8).map(p=>'https://www.northgo.com'+localizedPath(p,l));siteData.aboutUrls[l]='https://www.northgo.com'+localizedPath('/about',l);siteData.privacyUrls[l]='https://www.northgo.com'+localizedPath('/legal/privacy-policy',l);siteData.baseUrls[l]='https://www.northgo.com'+localizedPath('/',l);}

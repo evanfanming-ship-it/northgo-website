@@ -4,7 +4,7 @@ if(readFileSync('VERSION','utf8').trim()!==version)throw new Error('VERSION does
 mkdirSync('dist',{recursive:true});
 const logos=Object.fromEntries(['dark','light'].map(theme=>[theme,'data:image/svg+xml;base64,'+Buffer.from(readFileSync('assets/northgo-logo-'+theme+'.svg')).toString('base64')]));
 const stamp=(html,theme='dark')=>html.replace(/(<a\b[^>]*class="[^"]*\bbrand\b[^"]*"[^>]*>)northgo<(?:i|span)>↗<\/(?:i|span)><\/a>/g,`$1<img src="${logos[theme]}" alt="Northgo" width="1070" height="210" style="display:block;width:150px;height:auto;max-width:100%"></a>`).replace('</head>',`<meta name="version" content="${version}"></head>`);
-const home=stamp(readFileSync('northgo-updated.html','utf8').replaceAll('href="index.html?lang=','href="sitemap.html?lang='));
+const home=stamp(readFileSync('northgo-updated.html','utf8').replaceAll('href="index.html?lang=','href="sitemap.html?lang=').replace(/"releaseVersion":"[^"]*"/g,`"releaseVersion":"${version}"`).replace(/class="site-version">v[^<]*/g,`class="site-version">v${version}`));
 writeFileSync('dist/index.html',home);
 writeFileSync('dist/northgo-updated.html',home);
 // Keep the original sitemap route relationships within the deployment.

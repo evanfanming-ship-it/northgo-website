@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4
+
+- Display the release version in the homepage footer in every language.
+- Keep the visible version and runtime language switching synchronized with package.json during release builds.
+
 ## 1.0.3
 
 - Bump the release version and redeploy the current website.
