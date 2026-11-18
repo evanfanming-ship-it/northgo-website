@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Refine the English hero with a clearer logistics headline and balanced responsive layout.
+- Add a cargo-aircraft photograph sourced from Northgo's existing website.
+- Preserve the other language hero layouts and the services anchor.
+
 ## 1.0.1
 
 - Replace the text logo with the official Northgo website vector artwork.
