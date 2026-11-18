@@ -1,4 +1,11 @@
 dist/
+.cloudflare-dist/
+.wrangler/
+wrangler.remote.json
+.dev.vars
+.dev.vars.*
+.cloudflare-secrets*
+data/
 node_modules/
 *.log
 .env

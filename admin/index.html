@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>詢問管理｜Northgo</title>
+  <link rel="stylesheet" href="/admin.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a href="/">North<span>go</span></a><strong>後台管理</strong>
+    <div class="account"><span id="account-name"></span><button id="logout" type="button" hidden>登出</button></div>
+  </header>
+  <main>
+    <p id="message" role="status"></p>
+    <section id="login-panel" class="panel narrow">
+      <h1>管理員登入</h1>
+      <form id="login">
+        <label>帳號<input name="username" required maxlength="120" autocomplete="username"></label>
+        <label>密碼<input name="password" required type="password" maxlength="512" autocomplete="current-password"></label>
+        <button>登入</button>
+      </form>
+    </section>
+    <section id="dashboard" hidden>
+      <h1 class="section-chip" id="enquiries-title">客戶詢問</h1>
+      <form id="filters" class="filters">
+        <label class="search-field">搜尋<input type="search" name="q" placeholder="姓名、公司、Email" maxlength="100"></label>
+        <label>狀態<select name="status"><option value="">全部</option><option value="new">新進</option><option value="in_progress">處理中</option><option value="closed">已結案</option></select></label>
+        <label>每頁<select name="pageSize"><option>10</option><option selected>20</option><option>50</option><option>100</option></select></label>
+        <div class="toolbar">
+          <button id="settings" type="button">設定</button>
+          <button type="submit">重新載入</button>
+          <button class="primary" id="create" type="button">新增詢問</button>
+        </div>
+      </form>
+      <div class="table-scroll" tabindex="0" role="region" aria-labelledby="enquiries-title">
+        <table aria-labelledby="enquiries-title">
+          <thead><tr>
+            <th scope="col" aria-sort="descending"><button type="button" data-sort="created_at">時間 <span aria-hidden="true">↓</span></button></th>
+            <th scope="col"><button type="button" data-sort="name">姓名 <span aria-hidden="true">↕</span></button></th>
+            <th scope="col"><button type="button" data-sort="company">公司 <span aria-hidden="true">↕</span></button></th>
+            <th scope="col"><button type="button" data-sort="email">電子郵件 <span aria-hidden="true">↕</span></button></th>
+            <th scope="col"><button type="button" data-sort="status">狀態 <span aria-hidden="true">↕</span></button></th>
+            <th scope="col" class="actions-heading">操作</th>
+          </tr></thead>
+          <tbody id="list"></tbody>
+        </table>
+      </div>
+      <div class="pagination"><span id="count" aria-live="polite"></span><button id="previous" type="button">上一頁</button><button id="next" type="button">下一頁</button></div>
+    </section>
+    <dialog id="record-dialog" aria-labelledby="dialog-title"><div id="detail"></div></dialog>
+    <dialog id="settings-dialog" aria-labelledby="settings-title">
+      <h2 id="settings-title">表格顯示設定</h2>
+      <form id="display-settings">
+        <label>列高<select name="density"><option value="comfortable">標準</option><option value="compact">精簡</option></select></label>
+        <div class="detail-actions"><button type="button" data-close="settings-dialog">取消</button><button class="primary">套用</button></div>
+      </form>
+    </dialog>
+  </main>
+  <noscript>請啟用 JavaScript 以使用後台管理。</noscript>
+</body>
+</html>

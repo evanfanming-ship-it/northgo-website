@@ -18,10 +18,76 @@ function showOffice(id){
  document.querySelector('#office-detail').innerHTML=`<h3>${e(name)}${o.head?' · '+e(t.head):''}</h3><address lang="en">${e(o.address)}</address><a href="tel:${o.tel.replaceAll('-','')}">${e(t.phone)} ${e(o.tel)}</a><a href="mailto:${o.email}">${o.email}</a><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address)}" target="_blank" rel="noopener noreferrer">${e(t.mapLink)} ↗</a>`;renderMap();
 }
 function capture(){const f=document.querySelector('#enquiry-form');if(!f)return;for(const el of f.elements){if(el.name)formValues[el.name]=el.type==='checkbox'?el.checked:el.value;}}
+const enquiryEndpoint = document.querySelector('meta[name=northgo-enquiry-api]')?.content;
+const submissionCopy = {
+ 'zh-tw': ['確認後即可送出詢問，並取得收件編號。','送出詢問','已收到詢問。收件編號','送出失敗，請稍後重試。','送出中…'],
+ en: ['Review your details before submitting. You will receive a reference number.','Submit enquiry','Enquiry received. Reference','Could not submit. Please try again.','Submitting…'],
+ ja: ['内容を確認して送信すると、受付番号が発行されます。','お問い合わせを送信','受け付けました。受付番号','送信できませんでした。もう一度お試しください。','送信中…'],
+ vi: ['Kiểm tra nội dung trước khi gửi để nhận mã yêu cầu.','Gửi yêu cầu','Đã nhận yêu cầu. Mã','Không gửi được. Vui lòng thử lại.','Đang gửi…'],
+};
+const anotherEnquiry = { 'zh-tw':'再送一筆詢問', en:'Start another enquiry', ja:'新しいお問い合わせ', vi:'Gửi yêu cầu khác' };
+let pendingEnquiry;
+function connectEnquiry(form, lang) {
+ if (!enquiryEndpoint) return;
+ const [instructions, submit, received, failed, sending] = submissionCopy[lang];
+ document.querySelector('.enquiry-grid > div > .form-notice').textContent = instructions;
+ const review = document.querySelector('#enquiry-review');
+ const message = review.querySelector('.form-notice');
+ message.textContent = instructions;
+ message.setAttribute('role', 'status');
+ const button = document.createElement('button');
+ button.type = 'button';
+ button.className = 'button';
+ button.textContent = submit;
+ review.querySelector('.review-actions').prepend(button);
+ for (const selector of ['#email-draft', '#download']) review.querySelector(selector).hidden = true;
+ button.onclick = async () => {
+   const payload = { ...formValues, language: lang };
+   const signature = JSON.stringify(payload);
+   if (pendingEnquiry?.signature !== signature) {
+     const bytes = crypto.getRandomValues(new Uint8Array(16));
+     const id = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+     pendingEnquiry = { signature, id };
+   }
+   button.disabled = true;
+   const edit = review.querySelector('#edit');
+   const languageControl = document.querySelector('#language');
+   edit.disabled = languageControl.disabled = true;
+   message.textContent = sending;
+   try {
+     const response = await fetch(enquiryEndpoint, {
+       method: 'POST', headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify({ ...payload, requestId: pendingEnquiry.id }),
+     });
+     if (!response.ok) throw new Error('Submission failed');
+     const { id } = await response.json();
+     message.textContent = received + ' ' + id;
+     review.querySelector('#review-data').replaceChildren();
+     review.querySelector('.review-actions').hidden = true;
+     pendingEnquiry = null;
+     formValues = {};
+     form.reset();
+     const again = document.createElement('button');
+     again.type = 'button';
+     again.className = 'button';
+     again.textContent = anotherEnquiry[lang];
+     again.onclick = () => {
+       hydrate(lang);
+       document.querySelector('#enquiry-form select').focus();
+     };
+     review.append(again);
+   } catch {
+     message.textContent = failed;
+     button.disabled = edit.disabled = false;
+   } finally { languageControl.disabled = false; }
+ };
+ form.addEventListener('submit', () => { message.textContent = instructions; });
+}
 function hydrate(l){
  if(!Object.hasOwn(siteData.copy,l))l='zh-tw';language=l;const t=siteData.copy[l];app.innerHTML=renderPage(l);document.documentElement.lang=t.lang;document.title='Northgo | '+t.title;
  document.querySelector('meta[name=description]').content=t.lead;
  const form=document.querySelector('#enquiry-form');for(const el of form.elements){if(el.name&&Object.hasOwn(formValues,el.name)){if(el.type==='checkbox')el.checked=formValues[el.name];else el.value=formValues[el.name];}}
+ connectEnquiry(form, l);
  function serviceFields(){const i=Number(form.elements.service.value),hasDestination=form.elements.service.value===''||i<2;const fromLabels={'zh-tw':['起運地','起運地／專案地點','倉儲需求地點','港口／船舶作業地點'],en:['Origin','Origin / project location','Warehouse location','Port / vessel location'],ja:['出発地','出発地／プロジェクト所在地','倉庫の所在地','港／船舶の作業場所'],vi:['Điểm đi','Điểm đi / địa điểm dự án','Địa điểm kho','Cảng / địa điểm hoạt động tàu']};form.elements.to.closest('label').hidden=!hasDestination;form.elements.to.required=hasDestination;const label=form.elements.from.closest('label');label.firstChild.textContent=form.elements.service.value===''?t.labels[5]:fromLabels[language][i];}
  form.elements.service.addEventListener('change',serviceFields);serviceFields();
  document.querySelector('#language').addEventListener('change',e=>{capture();const y=scrollY;hydrate(e.target.value);window.scrollTo({top:y,behavior:'instant'});try{localStorage.setItem('northgo-redesign-language',language);const u=new URL(location.href);u.searchParams.set('lang',language);history.replaceState(null,'',u.href);}catch{}});

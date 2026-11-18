@@ -1,10 +1,12 @@
 {
   "name": "northgo-website-proposal",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "build:cloudflare": "node build-cloudflare.mjs",
     "build": "node build.mjs && node build-offices.mjs && node build-offices-dark.mjs && node build-redesign.mjs && node build-pages.mjs",
-    "test": "node verify.mjs && node verify-offices.mjs && node verify-pages.mjs"
+    "test": "node verify.mjs && node verify-offices.mjs && node verify-pages.mjs && node --test tests/backend.test.mjs"
   }
 }

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0
+
+- Share the enquiry API between the Node server and Cloudflare Workers.
+- Add the D1 schema migration and a separate full-site Workers build.
+- Present enquiry management as a sortable, paginated table with CRUD dialogs.
+
+## 1.1.0
+
+- Add a Node and SQLite backend for customer enquiries.
+- Add administrator login, enquiry search and filters, status updates, and internal notes.
+- Add direct submission and a reference number when the homepage is served by Node.
+
 ## 1.0.4
 
 - Display the release version in the homepage footer in every language.
